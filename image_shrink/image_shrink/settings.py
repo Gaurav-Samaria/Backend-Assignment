@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'Shrink_App',
+    'django_q',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = 'uploads'
 MEDIA_URL = '/files/'
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+Q_CLUSTER = {
+    'name': 'image_shrink',
+    'workers': 4,
+    'recycle': 500,
+    'timeout': 60,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Django Q',
+    'redis': {
+        'host': 'redis-14695.c264.ap-south-1-1.ec2.cloud.redislabs.com',
+        'password': 'iLiIZOYFMdcICI3yzivBTwn9blzfDC0h',
+        'port': 14695,
+        'db': 0, 
+    }
+}
